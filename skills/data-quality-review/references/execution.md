@@ -19,3 +19,5 @@ run-config 至少记录：
 默认每题 Opus、DS、GLM 各 4 个正式运行槽位，记为 repeat_index=1..4；每个槽位可有恢复 attempt，但只能选中一个 attempt 进入汇总。仅已定位的部署/API 故障可恢复一次，用户规定优先。先查旧进程是否仍活跃。恢复失败后记录 blocked/error，继续其他独立工作，不无限重试。用户暂停的批次保持暂停。
 
 每个 attempt 保存原始配置、开始结束、score、exception、trajectory、提交和 verifier 输出。预期题目 × 模型清单也要记录，未执行组合不可因没有 trial 文件而消失。原始文件不可覆盖；规范化记录引用原文件及其哈希。
+
+批次用途和逐项适用性按 [适用性配置](implementation-profiles.md) 在试跑前冻结。

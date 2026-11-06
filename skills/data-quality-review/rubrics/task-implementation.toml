@@ -1,0 +1,81 @@
+# quality-check rubric 1.0.0 — domain-neutral; see references/provenance.md
+
+[[criteria]]
+name = "verifiable"
+description = "评分与目标一致"
+guidance = "核对评分公式、方向、权重和阈值是否衡量公开任务目标。用正确、错误及等价提交验证关键分支。参考解高分只证明兼容性，不能单独证明评分正确。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "ground_truth_provenance"
+description = "参考答案来源可追溯"
+guidance = "核对答案键、数据来源、生成器或参考方法的版本和来源；区分参考解生成的答案与独立验证。允许合成数据，不要求论文或科研背景。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "solution_quality"
+description = "参考解真正完成任务"
+guidance = "区分答案生成器、参考求解器和评分器。检查参考解使用的信息是否符合声明边界；复制隐藏答案不能证明存在公开可行解。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "outcome_verified"
+description = "有效及等价结果被正确接受"
+guidance = "按任务契约判断不同格式、实现或方法是否等价。方法限制须服务于声明的能力目标或防作弊；声称误拒时提供具体反例。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "graded_instances_discriminate"
+description = "评分实例具备区分能力"
+guidance = "检查空解、常量、示例和默认 starter 的得分，与合法基线比较。按目标判断覆盖与冗余；不强制统一零分、10% 阈值或多实例。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "test_instruction_alignment"
+description = "公开要求与验收一致"
+guidance = "将每个验收条件映射到题面或明确引用的规范。对实质歧义给出合理解释及不同评分后果；检查公开环境和评分环境差异。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "structured_data_schema"
+description = "输入输出契约充分"
+guidance = "按题型检查字段、类型、路径、单位、编码、顺序、缺失值与非法值处理。只要求完成任务必需的约定；非结构化题不强加 JSON schema。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "solvable"
+description = "允许条件下存在可行路线"
+guidance = "核对公开输入、允许工具和资源内的可行解法。结合参考解与控制证据，区分缺材料、环境故障和任务不可解；文件存在不等于执行成功。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "deterministic_reproducible"
+description = "结果可复现"
+guidance = "核对依赖、镜像、数据版本、随机种子和重复评分证据。按任务允许的随机性与误差范围判断，不统一要求逐比特相同。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "anti_cheat_robustness"
+description = "答案与评分边界有效"
+guidance = "检查真实用户权限下的答案可读性、元数据泄露、评分器篡改与 reward 写入。记录静态可疑路径、攻击尝试、成功攻击和实际所得分数，不能相互替代。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "task_security"
+description = "执行与信息边界明确"
+guidance = "检查可达的宿主挂载、凭据、外部服务和跨题访问；根据实际访问路径与声明权限判定，不仅凭题目内容或工具名称推断恶意。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "task_relevance"
+description = "任务符合用途与目标能力"
+guidance = "依据明确给出的训练、评测或业务用途及目标人群判断任务价值。没有目标配置时记录证据不足；不要求科研用途，不使用学科白名单。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "essential_difficulty"
+description = "难点对应目标能力"
+guidance = "识别实际推理、决策或计算难点。格式、精度和流程要求只有与目标相关且公开时才合理，不能以无关陷阱代替能力测量。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "difficult"
+description = "难度设计符合定位"
+guidance = "检查任务挑战与声明的能力等级是否相符。简单题可以合格；不得用专家耗时猜测或单次模型失败证明困难，实测难度留到试跑后判断。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "agentic"
+description = "Agent 任务存在有效决策机会"
+guidance = "仅对声明评估 Agent 能力的任务检查观察、选择、验证和修正机会。工具调用次数不是证据；问答、答案键和 PPL 题可标不适用。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"
+
+[[criteria]]
+name = "novel"
+description = "重复与答案复用风险可说明"
+guidance = "在声明的对照范围内比较目标、输入、输出和评分。相似性仅作筛查；认定污染需要直接复用答案的证据，没有对照库需披露局限。\n\n结论使用 PASS、FAIL、NOT_APPLICABLE。PASS 需要充分证据；FAIL 需要具体缺陷、影响和修复验收条件；不适用说明原因。证据不足使用 NOT_APPLICABLE，解释以 INSUFFICIENT_EVIDENCE: 开头，并将报告标为未完成。引用文件行号、轨迹步骤或实测输出；区分静态发现与动态复现，不虚构执行证据。同一缺陷设主归属，其他项交叉引用。"

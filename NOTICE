@@ -1,0 +1,4 @@
+Quality Check: independently written domain-neutral skill guidance and rubrics.
+Design references: apexin-ai/task-review and apexin-ai/train-tasks.
+See skills/data-quality-review/references/provenance.md for scope and attribution.
+No third-party implementation is bundled.

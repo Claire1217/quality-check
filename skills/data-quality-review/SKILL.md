@@ -25,8 +25,8 @@ description: Quality Check，核验供应商交付的 Agent 题包、问答样�
 
 1. **Implementation Review**：逐题应用随包的 [implementation rubric](rubrics/task-implementation.toml)，保存每项结论、证据、rubric 版本与哈希。结合 [补充审查清单](references/implementation-checks.md) 检查评分器和实例。静态审查不能冒充动态复现。题型不适用与证据不足分别解释。
 2. **控制验证**：按 [控制协议](references/controls.md) 执行环境、参考解、重复评分、空解和适用探针，或引用同版本同协议的已有证据。确认评分方向与合法基线。评分失效时停止扩大受影响子集，保留证据、继续独立题；缺控制不得标已通过。
-3. **三模型各 4 次**：每题三个已配置 solver 各四次独立正式运行，共十二个槽位。使用 Claude Opus 5.5、DeepSeek、GLM 三个模型；实际 API ID（含 DeepSeek、GLM 的版本）优先读取项目配置，缺失或不可用时询问，不静默替换模型。每次新上下文、容器或等效隔离环境及提交目录，只提供允许材料；审题结果、答案、审查轨迹不能进入 solver。同协议固定预算与工具，差异必须披露。恢复 attempt 不算新 repeat，不取最高分。
-4. **逐次轨迹分析**：按 [分析接入](references/task-review.md) 对全部正式运行和恢复 attempt 建索引，成功、失败、超时、中断均覆盖；逐项应用 [trajectory rubric](rubrics/trial-analysis.toml)。reviewer 与 solver 分开，引用原始事件和评分输出，不能改原分数。没有轨迹或裁判失败时保留缺口，不补造结论。
+3. **三模型各 4 次**：每题三个已配置 solver 各四次独立正式运行，共十二个槽位。使用 Claude Opus 5.5（`claude-opus-5-5`）、DeepSeek V4.1 Flash（`deepseek-v4.1-flash`）、GLM-5.3（`glm-5.3`）。这些是现有 Apexin 网关试跑的实际调用 ID；其他接口需核对对应 ID，缺失或不可用时询问，不静默替换模型。每次新上下文、容器或等效隔离环境及提交目录，只提供允许材料；审题结果、答案、审查轨迹不能进入 solver。同协议固定预算与工具，差异必须披露。恢复 attempt 不算新 repeat，不取最高分。
+4. **逐次轨迹分析**：按 [分析接入](references/task-review.md) 对全部正式运行和恢复 attempt 建索引，成功、失败、超时、中断均覆盖；逐项应用 [trajectory rubric](rubrics/trial-analysis.toml)。默认 reviewer 使用 Claude Opus 5.5（`claude-opus-5-5`），分析运行不计入十二次做题。reviewer 与 solver 分开，引用原始事件和评分输出，不能改原分数。没有轨迹或裁判失败时保留缺口，不补造结论。
 5. **统一报告**：依据 [统计口径](references/reporting.md) 和 [报告模板](assets/report-template.md) 汇总题目质量、控制、十二次结果、逐次归因及修复条件。已运行和已验收分别计数；未完成阶段不得标完成。修复创建新版本，按影响范围复测，保留旧证据。
 
 用户只请求某阶段时执行该范围并注明未完成全流程。用户明确变更模型数或运行次数时记录协议偏离；内置汇总脚本只支持四次，不得丢弃额外记录迁就它。

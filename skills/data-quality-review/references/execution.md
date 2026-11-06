@@ -12,11 +12,11 @@ run-config 至少记录：
 - 本包 rubric 版本与哈希；可选 task-review/train-tasks checkout 路径、commit 与适配 diff；Harbor/agent 版本。
 - 题目时限、输出 token 上限、协议 ID、重试上限、抽样理由。
 
-模型选择沿用用户已有配置。本流程使用 Claude Opus 5.5、DeepSeek、GLM；API ID 与 DeepSeek、GLM 的具体版本读取项目现有配置，缺失时询问，不猜测或静默替换。用户明确指定替换模型时记录协议变更。用两个待比较模型配置 --pair，第三个作为对照。模型/预算缺失先准备实验，不猜测后直接调用。
+模型选择沿用用户已有配置。本流程使用 Claude Opus 5.5（`claude-opus-5-5`）、DeepSeek V4.1 Flash（`deepseek-v4.1-flash`）、GLM-5.3（`glm-5.3`），统一轨迹 reviewer 为 `claude-opus-5-5`。这些 ID 已在既有试跑配置与记录中出现，使用的网关为 `https://api.apexin.ai`。其他用户读取自己的接入配置并验证对应模型可用性；缺失时询问，不猜测或静默替换。用户明确指定替换模型时记录协议变更。用两个待比较模型配置 --pair，第三个作为对照。模型/预算缺失先准备实验，不猜测后直接调用。
 
 已有 CCM 或其他调度器时复用其持久化任务、心跳与回收机制；没有则按本地资源顺序执行。不要求安装 CCM。运行前检查原生 harness 的 --help、版本及一个最小环境控制；不要把历史命令当当前有效接口。
 
-每题 Claude Opus 5.5、DeepSeek、GLM 各 4 个正式运行槽位，记为 repeat_index=1..4；每个槽位可有恢复 attempt，但只能选中一个 attempt 进入汇总。仅已定位的部署/API 故障可恢复一次，用户规定优先。先查旧进程是否仍活跃。恢复失败后记录 blocked/error，继续其他独立工作，不无限重试。用户暂停的批次保持暂停。
+每题 Claude Opus 5.5、DeepSeek V4.1 Flash、GLM-5.3 各 4 个正式运行槽位，记为 repeat_index=1..4；每个槽位可有恢复 attempt，但只能选中一个 attempt 进入汇总。仅已定位的部署/API 故障可恢复一次，用户规定优先。先查旧进程是否仍活跃。恢复失败后记录 blocked/error，继续其他独立工作，不无限重试。用户暂停的批次保持暂停。
 
 每个 attempt 保存原始配置、开始结束、score、exception、trajectory、提交和 verifier 输出。预期题目 × 模型清单也要记录，未执行组合不可因没有 trial 文件而消失。原始文件不可覆盖；规范化记录引用原文件及其哈希。
 

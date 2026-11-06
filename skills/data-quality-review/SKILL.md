@@ -1,9 +1,9 @@
 ---
 name: data-quality-review
-description: 核验供应商交付的 Agent 题包、问答样本及原生 PPL 数据，执行 Implementation Review、控制验证、三模型各四次试跑、逐次轨迹分析及统一报告。用于训练或评测数据验收、难度对照和修复复测，不用于普通表格清洗。
+description: Quality Check，核验供应商交付的 Agent 题包、问答样本及原生 PPL 数据，执行 Implementation Review、控制验证、三模型各四次试跑、逐次轨迹分析及统一报告。用于训练或评测数据验收、难度对照和修复复测，不用于普通表格清洗。
 ---
 
-# 数据质检
+# Quality Check：供应商题目质检
 
 主要用于供应商题目交付核验：检查交付完整性、可解性、参考答案与评分可靠性，独立验证供应商声明，给出逐题验收建议和修复复测条件。agent 辅助整理、执行和分析，质检负责人核验证据；外部专家可参与复核。目标是可追溯的质量判断、可复现实验和修复条件。题目质量、模型表现和采购决定分别记录；不限定领域，不要求科研用途或所有题都困难。
 
@@ -25,7 +25,7 @@ description: 核验供应商交付的 Agent 题包、问答样本及原生 PPL �
 
 1. **Implementation Review**：逐题应用随包的 [implementation rubric](rubrics/task-implementation.toml)，保存每项结论、证据、rubric 版本与哈希。结合 [补充审查清单](references/implementation-checks.md) 检查评分器和实例。静态审查不能冒充动态复现。题型不适用与证据不足分别解释。
 2. **控制验证**：按 [控制协议](references/controls.md) 执行环境、参考解、重复评分、空解和适用探针，或引用同版本同协议的已有证据。确认评分方向与合法基线。评分失效时停止扩大受影响子集，保留证据、继续独立题；缺控制不得标已通过。
-3. **三模型各 4 次**：每题三个已配置 solver 各四次独立正式运行，共十二个槽位。默认模型角色为 Opus、DeepSeek、GLM，实际 ID 由用户配置。每次新上下文、容器或等效隔离环境及提交目录，只提供允许材料；审题结果、答案、审查轨迹不能进入 solver。同协议固定预算与工具，差异必须披露。恢复 attempt 不算新 repeat，不取最高分。
+3. **三模型各 4 次**：每题三个已配置 solver 各四次独立正式运行，共十二个槽位。使用 Claude Opus 5.5、DeepSeek、GLM 三个模型；实际 API ID（含 DeepSeek、GLM 的版本）优先读取项目配置，缺失或不可用时询问，不静默替换模型。每次新上下文、容器或等效隔离环境及提交目录，只提供允许材料；审题结果、答案、审查轨迹不能进入 solver。同协议固定预算与工具，差异必须披露。恢复 attempt 不算新 repeat，不取最高分。
 4. **逐次轨迹分析**：按 [分析接入](references/task-review.md) 对全部正式运行和恢复 attempt 建索引，成功、失败、超时、中断均覆盖；逐项应用 [trajectory rubric](rubrics/trial-analysis.toml)。reviewer 与 solver 分开，引用原始事件和评分输出，不能改原分数。没有轨迹或裁判失败时保留缺口，不补造结论。
 5. **统一报告**：依据 [统计口径](references/reporting.md) 和 [报告模板](assets/report-template.md) 汇总题目质量、控制、十二次结果、逐次归因及修复条件。已运行和已验收分别计数；未完成阶段不得标完成。修复创建新版本，按影响范围复测，保留旧证据。
 
